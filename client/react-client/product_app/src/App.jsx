@@ -7,9 +7,13 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedData = axios.get("http://localhost:3000/products");
-        console.log(fetchedData);
-        setData(JSON.stringify(fetchedData));
+        const fetchedData = await axios.get("http://localhost:3000/products", {
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        console.log(fetchedData.data);
+        setData(fetchedData.data);
       } catch (error) {
         console.log(error);
       }
@@ -17,7 +21,7 @@ function App() {
     fetchData();
   }, []);
 
-  return <>{data}</>;
+  return <>{JSON.stringify(data)}</>;
 }
 
 export default App;
