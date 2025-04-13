@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Product from "./Product";
 
-function ProductList() {
+const ProductList = ({ viewBy }) => {
   const [products, setProducts] = useState([]);
   const [editId, setEditId] = useState(null);
 
@@ -65,11 +65,12 @@ function ProductList() {
               onCancel={() => setEditId(null)}
               onSaveEdit={handleSaveEdit}
               deleteProduct={deleteProduct}
+              viewBy={viewBy}
             />
           );
         })}
     </div>
   );
-}
+};
 
 export default ProductList;

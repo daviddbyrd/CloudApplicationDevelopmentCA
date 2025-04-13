@@ -11,12 +11,20 @@ const Product = ({
   onCancel,
   onSaveEdit,
   deleteProduct,
+  viewBy,
 }) => {
   const [form, setForm] = useState({ name, description, price, available });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  if (
+    (viewBy == "available" && available == false) ||
+    (viewBy == "unavailable" && available == true)
+  ) {
+    return;
+  }
 
   return isEditing ? (
     <div className="bg-blue-100 p-4 rounded-md w-6/10">
