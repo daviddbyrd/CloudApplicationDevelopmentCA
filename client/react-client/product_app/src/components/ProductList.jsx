@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Product from "./Product";
 import OptionBar from "./OptionBar";
+import { ValidateProductData } from "../utils/helper";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -56,6 +57,9 @@ const ProductList = () => {
   };
 
   const createNewProduct = async ({ newProduct }) => {
+    if (!ValidateProductData({ product: newProduct })) {
+      return;
+    }
     try {
       await axios.post("http://localhost:3000/products", newProduct, {
         headers: {
