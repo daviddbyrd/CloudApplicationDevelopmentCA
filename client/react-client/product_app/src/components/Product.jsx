@@ -1,12 +1,56 @@
-import React from "react";
+import { React, useState } from "react";
 
-const Product = ({ name, description, price, available }) => {
-  return (
-    <div>
+const Product = ({
+  id,
+  name,
+  description,
+  price,
+  available,
+  isEditing,
+  onEdit,
+  onCancel,
+  onSaveEdit,
+  deleteProduct,
+}) => {
+  const [form, setForm] = useState({ name, description, price, available });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  return isEditing ? (
+    <div className="bg-blue-100 p-4 rounded-md">
+      <input name="name" value={form.name} onChange={handleChange} />
+      <input
+        name="description"
+        value={form.description}
+        onChange={handleChange}
+      />
+      <input name="price" value={form.price} onChange={handleChange} />
+      <input name="available" value={form.available} onChange={handleChange} />
+      <button onClick={onCancel}>Chancel</button>
+      <button onClick={() => onSaveEdit({ id, updatedProduct: form })}>
+        Save Changes
+      </button>
+    </div>
+  ) : (
+    <div className="bg-blue-100 p-4 rounded-md">
+      <h1>{id}</h1>
       <h1>{name}</h1>
       <h1>{description}</h1>
-      <h1>{price}</h1>
+      <h1>€{price}</h1>
       <h1>{available}</h1>
+      <div>
+        <button
+          className="border-2 border-solid"
+          onClick={() => deleteProduct(id)}
+        >
+          Delete
+        </button>
+        <button className="border-2 border-solid" onClick={onEdit}>
+          Edit
+        </button>
+      </div>
     </div>
   );
 };
