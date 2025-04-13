@@ -4,8 +4,8 @@ const OptionBar = ({ handleChangeView, viewBy, createNewProduct }) => {
   const defaultForm = {
     name: "",
     description: "",
-    price: "",
-    available: "",
+    price: 0,
+    available: true,
   };
   const [isCreating, setIsCreating] = useState(false);
   const [form, setForm] = useState(defaultForm);
@@ -27,8 +27,9 @@ const OptionBar = ({ handleChangeView, viewBy, createNewProduct }) => {
   return (
     <>
       <div className="flex flex-row justify-around w-6/10 mb-5">
-        <div className="w-4/10 text-center border-2 border-solid rounded-md flex items-center justify-center">
+        <div className="w-4/10 text-center border-2 border-solid rounded-md flex items-center justify-center bg-white">
           <select
+            className="w-full h-full"
             value={viewBy}
             onChange={(e) => handleChangeView(e.target.value)}
           >

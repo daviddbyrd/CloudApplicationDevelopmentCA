@@ -70,7 +70,7 @@ const ProductList = () => {
   };
 
   return (
-    <div className="flex flex-col mt-20 items-center">
+    <div className="flex flex-col py-20 items-center">
       <OptionBar
         handleChangeView={(newView) => setViewBy(newView)}
         viewBy={viewBy}
