@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  protect_from_forgery with: :exception, unless: -> {request.format.json?}
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /products or /products.json
