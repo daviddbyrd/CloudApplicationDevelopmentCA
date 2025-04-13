@@ -19,7 +19,7 @@ const Product = ({
   };
 
   return isEditing ? (
-    <div className="bg-blue-100 p-4 rounded-md">
+    <div className="bg-blue-100 p-4 rounded-md w-6/10">
       <input name="name" value={form.name} onChange={handleChange} />
       <input
         name="description"
