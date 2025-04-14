@@ -3,7 +3,7 @@ import ProductList from "../components/ProductList";
 
 const MainPage = () => {
   return (
-    <div className="size-full bg-gray-200">
+    <div className="w-screen h-screen bg-gray-200">
       <ProductList />
     </div>
   );

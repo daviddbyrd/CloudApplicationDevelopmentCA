@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product HTML Client</title>
+  </head>
+  <body>
+    <h2>Product Client</h2>
+    <div id="products"></div>
+
+    <script>
+      async function loadData() {
+        var url = "http://localhost:3000/products";
+        var response = await fetch(url, {
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        console.log(await response.json());
+      }
+    </script>
+  </body>
+</html>

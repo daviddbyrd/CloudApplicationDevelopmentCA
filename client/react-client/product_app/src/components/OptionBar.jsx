@@ -27,7 +27,7 @@ const OptionBar = ({ handleChangeView, viewBy, createNewProduct }) => {
   return (
     <>
       <div className="flex flex-row justify-around w-6/10 mb-5">
-        <div className="w-4/10 text-center border-2 border-solid rounded-md flex items-center justify-center bg-white">
+        <div className="w-4/10 text-center border-2 border-black rounded-md flex items-center justify-center bg-white">
           <select
             className="w-full h-full"
             value={viewBy}
@@ -39,7 +39,7 @@ const OptionBar = ({ handleChangeView, viewBy, createNewProduct }) => {
           </select>
         </div>
         <button
-          className="bg-green-200 py-1 px-5 border-2 border-black w-4/10 text-center border-2 border-solid rounded-md"
+          className="bg-green-200 py-1 px-5 border-2 border-black w-4/10 text-center rounded-md"
           onClick={() => setIsCreating(true)}
         >
           Create New Product +

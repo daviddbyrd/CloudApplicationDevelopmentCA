@@ -23,10 +23,7 @@ const Product = ({
     (viewBy == "available" && available == false) ||
     (viewBy == "unavailable" && available == true)
   ) {
-    console.log(viewBy);
     return;
-  } else {
-    console.log(`id: ${id}. viewBy: ${viewBy}. available: ${available}`);
   }
 
   return isEditing ? (

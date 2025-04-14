@@ -2,17 +2,24 @@ export const ValidateProductData = ({ product }) => {
   const validKeys = {
     name: "string",
     description: "string",
-    price: "number",
     available: "boolean",
   };
 
   const productKeys = Object.keys(product);
-  if (productKeys.length !== validKeys.length) {
+  if (productKeys.length !== 4) {
+    console.log(`1 ${productKeys}`);
     return false;
   }
 
-  for (const key of validKeys) {
-    if (!(key in productKeys) || validKeys[key] !== typeof productKeys[key]) {
+  if (!("price" in product)) {
+    return false;
+  }
+
+  if ()
+
+  for (const [key, type] of Object.entries(validKeys)) {
+    if (!(key in product) || typeof product[key] !== type) {
+      console.log(`2 ${productKeys}, ${key}`);
       return false;
     }
   }
