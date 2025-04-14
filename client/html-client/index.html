@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product HTML Client</title>
   </head>
-  <body>
+  <body onload="loadData()">
     <h2>Product Client</h2>
     <div id="products"></div>
 
@@ -17,7 +17,16 @@
             Accept: "application/json",
           },
         });
-        console.log(await response.json());
+        var data = await response.json();
+        var div = "";
+        for (var i = 0; i < data.length; ++i) {
+          div += "Name: " + data[i]["name"] + "<br/>";
+          div += "Description: " + data[i]["description"] + "<br/>";
+          div += "Price: €" + data[i]["price"] + "<br/>";
+          div += "Available: " + data[i]["available"] + "<br/>";
+          div += "<br /><br/>";
+        }
+        document.getElementById("products").innerHTML = div;
       }
     </script>
   </body>
