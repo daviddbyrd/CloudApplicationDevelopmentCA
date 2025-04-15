@@ -24,6 +24,8 @@ const OptionBar = ({ handleChangeView, viewBy, createNewProduct }) => {
     createNewProduct({ newProduct: form });
   };
 
+  // I should make it so reloaded or exiting Create Product resets the inputs
+
   return (
     <>
       <div className="flex flex-row justify-around w-6/10 mb-5">
