@@ -28,6 +28,7 @@
                 <b>Description: </b> ${product.description} <br/>
                 <b>Price: </b> ${product.price} <br/>
                 <b>Available: </b> ${product.available} <br/>
+                <input type="button" onclick="deleteProduct(${product.id});" value="Delete Product">
             `;
           productContainer.appendChild(productDiv);
         });
