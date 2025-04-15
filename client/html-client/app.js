@@ -81,7 +81,6 @@ const editProduct = (id) => {
 const updateTemp = (id, attr, val) => {
   const product = data.find((product) => product.id === id);
   product.temp[attr] = val;
-  render();
 };
 
 const cancelEdit = (id) => {
