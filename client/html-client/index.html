@@ -26,8 +26,6 @@
         render();
       };
 
-      // Need to add HTTP method for changing product after saving edit.
-
       const render = () => {
         const productContainer = document.getElementById("products");
 
@@ -84,15 +82,24 @@
         render();
       };
 
-      const saveEdit = (id) => {
+      const saveEdit = async (id) => {
         const product = data.find((product) => product.id === id);
-        product.name = product.temp.name;
-        product.description = product.temp.description;
-        product.price = product.temp.price;
-        product.available = product.temp.available;
-        product.temp = {};
-        product.isEditing = false;
-        render();
+        const updatedProduct = {
+          name: product.temp.name,
+          description: product.temp.description,
+          price: product.temp.price,
+          available: product.temp.available,
+        };
+        var url = `http://localhost:3000/products/${id}`;
+        var response = await fetch(url, {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedProduct),
+        });
+        loadData();
       };
 
       const deleteProduct = async (id) => {
