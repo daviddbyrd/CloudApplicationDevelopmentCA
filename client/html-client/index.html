@@ -18,15 +18,29 @@
           },
         });
         var data = await response.json();
-        var div = "";
-        for (var i = 0; i < data.length; ++i) {
-          div += "Name: " + data[i]["name"] + "<br/>";
-          div += "Description: " + data[i]["description"] + "<br/>";
-          div += "Price: €" + data[i]["price"] + "<br/>";
-          div += "Available: " + data[i]["available"] + "<br/>";
-          div += "<br /><br/>";
-        }
-        document.getElementById("products").innerHTML = div;
+
+        const productContainer = document.getElementById("products");
+
+        data.forEach((product) => {
+          const productDiv = document.createElement("div");
+          productDiv.innerHTML = `
+                <b>Name: </b> ${product.name} <br/>
+                <b>Description: </b> ${product.description} <br/>
+                <b>Price: </b> ${product.price} <br/>
+                <b>Available: </b> ${product.available} <br/>
+            `;
+          productContainer.appendChild(productDiv);
+        });
+      }
+      async function deleteProduct(id) {
+        var url = `http://localhost:3000/products/${id}`;
+        var response = await fetch(url, {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        loadData();
       }
     </script>
   </body>
