@@ -8,27 +8,21 @@ const render = () => {
 
     if (product.isEditing) {
       productDiv.innerHTML = `
-        <b>Name: </b> <input value="${product.temp.name}"> <br/>
-        <b>Description: </b> <input value="${product.temp.description}"> <br/>
-        <b>Price: </b> <input value="${product.temp.price}"> <br/>
-        <b>Available: </b> <input value="${product.temp.available}"> <br/>
+        <b>Name: </b> <input value="${product.temp.name}" data-key="name"> <br/>
+        <b>Description: </b> <input value="${product.temp.description}" data-key="description"> <br/>
+        <b>Price: </b> <input value="${product.temp.price}" data-key="price"> <br/>
+        <b>Available: </b> <input value="${product.temp.available}" data-key="available"> <br/>
         <button>Save Changes</button>
         <button>Cancel</button>
       `;
 
       const inputs = productDiv.querySelectorAll("input");
-      inputs[0].addEventListener("input", (e) =>
-        updateTemp(product.id, "name", e.target.value)
-      );
-      inputs[1].addEventListener("input", (e) =>
-        updateTemp(product.id, "description", e.target.value)
-      );
-      inputs[2].addEventListener("input", (e) =>
-        updateTemp(product.id, "price", e.target.value)
-      );
-      inputs[3].addEventListener("input", (e) =>
-        updateTemp(product.id, "available", e.target.value)
-      );
+
+      inputs.forEach((input) => {
+        input.addEventListener("input", (e) => {
+          updateTemp(product.id, input.dataset.key, e.target.value);
+        });
+      });
 
       const buttons = productDiv.querySelectorAll("button");
       buttons[0].addEventListener("click", () => saveEdit(product.id));
