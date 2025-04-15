@@ -14,7 +14,7 @@ const render = () => {
         <b>Available: </b> <input value="${product.temp.available}"> <br/>
         <button>Save Changes</button>
         <button>Cancel</button>
-    `;
+      `;
 
       const inputs = productDiv.querySelectorAll("input");
       inputs[0].addEventListener("input", (e) =>
@@ -35,13 +35,17 @@ const render = () => {
       buttons[1].addEventListener("click", () => cancelEdit(product.id));
     } else {
       productDiv.innerHTML = `
-              <b>Name: </b> ${product.name} <br/>
-              <b>Description: </b> ${product.description} <br/>
-              <b>Price: </b> ${product.price} <br/>
-              <b>Available: </b> ${product.available} <br/>
-              <input type="button" onclick="editProduct(${product.id});" value="Edit Product">
-              <input type="button" onclick="deleteProduct(${product.id});" value="Delete Product">
-            `;
+        <b>Name: </b> ${product.name} <br/>
+        <b>Description: </b> ${product.description} <br/>
+        <b>Price: </b> ${product.price} <br/>
+        <b>Available: </b> ${product.available} <br/>
+        <button>Edit Product</button>
+        <button>Delete Product</button>
+      `;
+
+      const buttons = productDiv.querySelectorAll("button");
+      buttons[0].addEventListener("click", () => editProduct(product.id));
+      buttons[1].addEventListener("click", () => deleteProduct(product.id));
     }
     productContainer.appendChild(productDiv);
   });
