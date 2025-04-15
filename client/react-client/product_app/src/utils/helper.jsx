@@ -15,7 +15,7 @@ export const ValidateProductData = ({ product }) => {
     return false;
   }
 
-  if ()
+  // Need to insert Validation for Price to check if it is a number.
 
   for (const [key, type] of Object.entries(validKeys)) {
     if (!(key in product) || typeof product[key] !== type) {
