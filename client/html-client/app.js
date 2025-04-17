@@ -124,6 +124,7 @@ const createProduct = async (newProduct) => {
     },
     body: JSON.stringify(newProduct),
   });
+  isCreating = false;
   loadData();
 };
 
