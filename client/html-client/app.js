@@ -103,7 +103,7 @@ const loadData = async () => {
   });
   render();
 };
-
+// create product
 const startCreateProduct = () => {
   isCreating = true;
   render();
