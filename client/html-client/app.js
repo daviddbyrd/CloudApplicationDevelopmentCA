@@ -1,3 +1,4 @@
+//main render function
 const render = () => {
   const productContainer = document.getElementById("products");
 
@@ -89,6 +90,7 @@ const render = () => {
   });
 };
 
+// fetch data from Rails Server
 const loadData = async () => {
   var url = "http://localhost:3000/products";
   var response = await fetch(url, {
