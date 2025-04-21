@@ -11,9 +11,11 @@ FROM nginx:alpine AS html-build
 COPY client/html-client /usr/share/nginx/html
 
 # Rails backend
-FROM ruby:3.0 AS rails-build
+FROM ruby:3.3.1 AS rails-build
 # Install dependencies
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+# 🛠️ Install system dependencies
+RUN apt-get update -qq && \
+    apt-get install -y build-essential libpq-dev nodejs libsqlite3-dev
 WORKDIR /app/server/product_app
 COPY server/product_app/Gemfile ./
 COPY server/product_app/Gemfile.lock ./
