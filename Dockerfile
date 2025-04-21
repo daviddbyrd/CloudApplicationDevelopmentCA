@@ -25,7 +25,7 @@ RUN bundle exec rails assets:precompile
 
 # Final image combining all components
 FROM nginx:alpine
-COPY --from=react-build /app/client/react-client/build /usr/share/nginx/html/react
+COPY --from=react-build /app/client/react-client/dist /usr/share/nginx/html/react
 COPY --from=html-build /usr/share/nginx/html /usr/share/nginx/html
 COPY --from=rails-build /app/server/product_app/public /usr/share/nginx/html/api
 
