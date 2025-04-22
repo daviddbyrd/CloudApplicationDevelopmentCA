@@ -32,4 +32,6 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
             docker stop my-app || true
             docker rm my-app || true
-            docker run -d -p 80:80 --name my-app ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
+            docker run -d -p 3000:3000 --name my-app-react ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
+            docker run -d -p 3002:80 --name my-app-html ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
+            docker run -d -p 3001:3000 --name my-app-rails ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
