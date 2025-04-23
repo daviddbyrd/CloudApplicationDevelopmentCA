@@ -142,6 +142,7 @@ const editProduct = (id) => {
   render();
 };
 
+// to handle state change of product attributes
 const updateTemp = (id, attr, val) => {
   const product = data.find((product) => product.id === id);
   product.temp[attr] = val;
