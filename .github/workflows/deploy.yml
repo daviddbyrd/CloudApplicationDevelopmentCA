@@ -15,12 +15,18 @@ jobs:
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
-      - name: Build Docker image
+      - name: Build HTML Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest ./client/html-client
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/html-app:latest ./client/html-client
 
-      - name: Push image to Docker Hub
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
+      - name: Push HTML image to Docker Hub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/html-app:latest
+
+      - name: Build Rails Docker image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/rails-app:latest ./server/product_app
+
+      - name: Push Rails image to Docker Hub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/rails-app:latest
 
       - name: Deploy over SSH
         uses: appleboy/ssh-action@v1.2.2
@@ -31,6 +37,10 @@ jobs:
           script: |
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
 
-            docker stop my-app-html || true
-            docker rm my-app-html || true
-            docker run -d -p 3002:80 --name my-app-html ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
+            docker stop html-app || true
+            docker rm html-app || true
+            docker run -d -p 3002:80 --name html-app ${{ secrets.DOCKERHUB_USERNAME }}/html-app:latest
+
+            docker stop rails-app || true
+            docker rm rails-app || true
+            docker run -d -p 3001:3000 --name rails-app ${{ secrets.DOCKERHUB_USERNAME }}/rails-app:latest
