@@ -1,6 +1,6 @@
 # HTML frontend build
 FROM nginx:alpine AS html-build
-COPY client/html-client /usr/share/nginx/html
+COPY . /usr/share/nginx/html
 
 # Final image combining all components
 FROM nginx:alpine
