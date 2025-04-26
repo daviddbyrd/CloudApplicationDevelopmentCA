@@ -1,9 +1,3 @@
-# HTML frontend build
-FROM nginx:alpine AS html-build
-COPY . /usr/share/nginx/html
-
-# Final image combining all components
 FROM nginx:alpine
-COPY --from=html-build /usr/share/nginx/html /usr/share/nginx/html
-CMD ["nginx", "-g", "daemon off;"]
+COPY . /usr/share/nginx/html
 EXPOSE 80
