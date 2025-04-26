@@ -41,7 +41,7 @@ jobs:
             docker rm html-app || true
             docker run -d -p 3002:80 --name html-app ${{ secrets.DOCKERHUB_USERNAME }}/html-app:latest
 
-            docker pull ${{ secrets.DOCKERHUN_USERNAME }}/rails-app:latest
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/rails-app:latest
 
             docker stop rails-app || true
             docker rm rails-app || true
