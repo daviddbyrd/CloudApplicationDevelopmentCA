@@ -25,9 +25,8 @@ jobs:
 
       - name: Set up Database
         run: |
-          cd server/product_app
-          cp config/database.yml.github-actions config/database.yml
-          bin/rails db:create RAILS_ENV=test
+          cd server/product_app  
+          bin/rails db:create RAILS_ENV=test 
           bin/rails db:migrate RAILS_ENV=test
 
       - name: Run RSpec tests
