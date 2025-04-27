@@ -1,4 +1,5 @@
-//main render function
+const serverIp = "http://13.60.237.86:3001";
+
 const render = () => {
   const productContainer = document.getElementById("products");
 
@@ -92,7 +93,7 @@ const render = () => {
 
 // fetch data from Rails Server
 const loadData = async () => {
-  var url = "http://localhost:3000/products";
+  var url = `${serverIp}/products`;
   var response = await fetch(url, {
     headers: {
       Accept: "application/json",
@@ -117,7 +118,7 @@ const cancelCreateProduct = () => {
 };
 
 const createProduct = async (newProduct) => {
-  var url = `http://localhost:3000/products`;
+  var url = `serverIp/products`;
   var response = await fetch(url, {
     method: "POST",
     headers: {
@@ -163,7 +164,7 @@ const saveEdit = async (id) => {
     price: product.temp.price,
     available: product.temp.available,
   };
-  var url = `http://localhost:3000/products/${id}`;
+  var url = `${serverIp}/products/${id}`;
   var response = await fetch(url, {
     method: "PUT",
     headers: {
@@ -176,7 +177,7 @@ const saveEdit = async (id) => {
 };
 
 const deleteProduct = async (id) => {
-  var url = `http://localhost:3000/products/${id}`;
+  var url = `${serverIp}/products/${id}`;
   var response = await fetch(url, {
     method: "DELETE",
     headers: {
