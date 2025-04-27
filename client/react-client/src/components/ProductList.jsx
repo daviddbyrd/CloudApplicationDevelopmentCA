@@ -4,6 +4,8 @@ import Product from "./Product";
 import OptionBar from "./OptionBar";
 import { ValidateProductData } from "../utils/helper";
 
+const serverIp = import.meta.env.VITE_SERVER_IP;
+
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [editId, setEditId] = useState(null);
@@ -12,7 +14,7 @@ const ProductList = () => {
 
   const fetchData = async () => {
     try {
-      const fetchedData = await axios.get("http://localhost:3000/products", {
+      const fetchedData = await axios.get(`${serverIp}/products`, {
         headers: {
           Accept: "application/json",
         },
@@ -29,7 +31,7 @@ const ProductList = () => {
 
   const deleteProduct = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/products/${id}`, {
+      await axios.delete(`${serverIp}/products/${id}`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -47,7 +49,7 @@ const ProductList = () => {
       return;
     }
     try {
-      await axios.put(`http://localhost:3000/products/${id}`, updatedProduct, {
+      await axios.put(`${serverIp}/products/${id}`, updatedProduct, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -67,7 +69,7 @@ const ProductList = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:3000/products", newProduct, {
+      await axios.post(`${serverIp}/products`, newProduct, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
