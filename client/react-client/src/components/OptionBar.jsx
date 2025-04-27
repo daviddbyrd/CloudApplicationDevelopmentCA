@@ -22,9 +22,8 @@ const OptionBar = ({ handleChangeView, viewBy, createNewProduct }) => {
   const onCreate = () => {
     setIsCreating(false);
     createNewProduct({ newProduct: form });
+    setForm(defaultForm);
   };
-
-  // I should make it so reloaded or exiting Create Product resets the inputs
 
   return (
     <>
