@@ -118,7 +118,7 @@ const cancelCreateProduct = () => {
 };
 
 const createProduct = async (newProduct) => {
-  var url = `serverIp/products`;
+  var url = `${serverIp}/products`;
   var response = await fetch(url, {
     method: "POST",
     headers: {
