@@ -16,13 +16,13 @@ const OptionBar = ({ handleChangeView, viewBy, createNewProduct }) => {
 
   const onCancel = () => {
     setIsCreating(false);
-    setForm(defaultForm);
+    setForm({ ...defaultForm });
   };
 
   const onCreate = () => {
     setIsCreating(false);
     createNewProduct({ newProduct: form });
-    setForm(defaultForm);
+    setForm({ ...defaultForm });
   };
 
   return (
