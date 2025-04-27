@@ -5,24 +5,31 @@ const OptionBar = ({ handleChangeView, viewBy, createNewProduct }) => {
     name: "",
     description: "",
     price: 0,
-    available: "true",
+    available: true,
   };
   const [isCreating, setIsCreating] = useState(false);
   const [form, setForm] = useState(defaultForm);
 
   const handleChange = (e) => {
+    if (e.target.name == available) {
+      if (e.target.value == "true") {
+        setForm({ ...form, [e.target.name]: true });
+      } else {
+        setForm({ ...form, [e.target.name]: false });
+      }
+    }
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const onCancel = () => {
     setIsCreating(false);
-    setForm(defaultForm);
+    setForm({ ...defaultForm });
   };
 
   const onCreate = () => {
     setIsCreating(false);
     createNewProduct({ newProduct: form });
-    setForm(defaultForm);
+    setForm({ ...defaultForm });
   };
 
   return (
