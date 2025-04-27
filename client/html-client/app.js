@@ -91,7 +91,6 @@ const render = () => {
   });
 };
 
-// fetch data from Rails Server
 const loadData = async () => {
   var url = `${serverIp}/products`;
   var response = await fetch(url, {
@@ -106,7 +105,7 @@ const loadData = async () => {
   });
   render();
 };
-// create product
+
 const startCreateProduct = () => {
   isCreating = true;
   render();
@@ -143,7 +142,6 @@ const editProduct = (id) => {
   render();
 };
 
-// to handle state change of product attributes
 const updateTemp = (id, attr, val) => {
   const product = data.find((product) => product.id === id);
   product.temp[attr] = val;
