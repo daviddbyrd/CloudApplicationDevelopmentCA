@@ -5,6 +5,32 @@ on:
     branches: [main]
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.1
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Set up Database
+        run: |
+          cp config/database.yml.github-actions config/database.yml
+          bin/rails db:create RAILS_ENV=test
+          bin/rails db:migrate RAILS_ENV=test
+
+      - name: Run RSpec tests
+        run: bundle exec rspec
+
   deploy:
     runs-on: ubuntu-latest
 
@@ -42,19 +68,16 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/html-app:latest
-
             docker stop html-app || true
             docker rm html-app || true
             docker run -d -p 3002:80 --name html-app ${{ secrets.DOCKERHUB_USERNAME }}/html-app:latest
 
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/rails-app:latest
-
             docker stop rails-app || true
             docker rm rails-app || true
             docker run -d -p 3001:3000 --name rails-app ${{ secrets.DOCKERHUB_USERNAME }}/rails-app:latest
 
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
-
             docker stop react-app || true
             docker rm react-app || true
             docker run -d -p 3000:3000 --name react-app ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
