@@ -5,7 +5,7 @@ const OptionBar = ({ handleChangeView, viewBy, createNewProduct }) => {
     name: "",
     description: "",
     price: 0,
-    available: true,
+    available: "true",
   };
   const [isCreating, setIsCreating] = useState(false);
   const [form, setForm] = useState(defaultForm);
@@ -16,13 +16,13 @@ const OptionBar = ({ handleChangeView, viewBy, createNewProduct }) => {
 
   const onCancel = () => {
     setIsCreating(false);
-    setForm({ ...defaultForm });
+    setForm(defaultForm);
   };
 
   const onCreate = () => {
     setIsCreating(false);
     createNewProduct({ newProduct: form });
-    setForm({ ...defaultForm });
+    setForm(defaultForm);
   };
 
   return (
