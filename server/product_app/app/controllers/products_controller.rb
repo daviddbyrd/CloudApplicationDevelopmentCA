@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
   def edit
   end
 
-  # POST /products or /products.json
+  # POST /products 
   def create
     @product = Product.new(product_params)
 
@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1 or /products/1.json
+  # PUT /products/1 
   def update
     respond_to do |format|
       if @product.update(product_params)
