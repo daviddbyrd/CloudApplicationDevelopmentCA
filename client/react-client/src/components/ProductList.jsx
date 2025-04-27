@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Product from "./Product";
 import OptionBar from "./OptionBar";
-// import { ValidateProductData } from "../utils/helper";
 
 const serverIp = import.meta.env.VITE_SERVER_IP;
 
@@ -10,7 +9,6 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [editId, setEditId] = useState(null);
   const [viewBy, setViewBy] = useState("all");
-  // const [invalidData, setInvalidData] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -44,10 +42,6 @@ const ProductList = () => {
   };
 
   const handleSaveEdit = async ({ id, updatedProduct }) => {
-    // if (!ValidateProductData({ product: newProduct })) {
-    //   setInvalidData(true);
-    //   return;
-    // }
     try {
       await axios.put(`${serverIp}/products/${id}`, updatedProduct, {
         headers: {
@@ -64,10 +58,6 @@ const ProductList = () => {
   };
 
   const createNewProduct = async ({ newProduct }) => {
-    // if (!ValidateProductData({ product: newProduct })) {
-    //   setInvalidData(true);
-    //   return;
-    // }
     try {
       await axios.post(`${serverIp}/products`, newProduct, {
         headers: {
@@ -109,19 +99,6 @@ const ProductList = () => {
             );
           })}
       </div>
-      {/* {invalidData && (
-        <div className="fixed top-0 left-0 flex items-center justify-center w-screen h-screen">
-          <div className="w-5/10 h-3/10 bg-gray-100 border-2 border black flex flex-col items-center rounded-md">
-            <h1 className="text-3xl py-10 ">Invalid Product Information</h1>
-            <button
-              className="bg-gray-200 py-1 px-5 border-2 border-black w-4/10 text-center rounded-md text-4xl"
-              onClick={() => setInvalidData(false)}
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };
