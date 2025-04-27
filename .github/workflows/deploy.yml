@@ -58,7 +58,7 @@ jobs:
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/rails-app:latest
 
       - name: Build React Docker Image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest ./client/react-client
+        run: docker build --no-cache -t ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest ./client/react-client
 
       - name: Push React image to Docker Hub
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
